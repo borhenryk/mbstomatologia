@@ -2237,3 +2237,59 @@ h2 {
   }
 }
 
+/* ================================================
+   THANK-YOU PAGE
+   ================================================ */
+.thanks {
+  min-height: calc(100vh - 260px);
+  display: grid;
+  place-items: center;
+  padding: 160px 0 100px;
+  text-align: center;
+  background: var(--bg);
+}
+
+.thanks__wrap {
+  max-width: 720px;
+}
+
+.thanks .eyebrow {
+  color: var(--gold);
+}
+
+.thanks__title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 20px 0 26px;
+}
+
+.thanks__title .italic {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.thanks .lead {
+  margin: 0 auto 42px;
+  max-width: 560px;
+}
+
+.thanks__actions {
+  display: inline-flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.thanks__actions .btn--ghost {
+  color: var(--ink);
+  border-color: rgba(15, 31, 45, 0.2);
+}
+.thanks__actions .btn--ghost:hover {
+  background: rgba(15, 31, 45, 0.05);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+

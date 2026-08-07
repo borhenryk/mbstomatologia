@@ -1196,26 +1196,36 @@
           </div>
         </div>
 
-        <form class="contact__form" onsubmit="event.preventDefault(); alert('Dziękujemy! Skontaktujemy się z Państwem wkrótce.');">
+        <form
+          class="contact__form"
+          action="https://formsubmit.co/biurombstomatologia@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Nowa wiadomość ze strony MBSTOMATOLOGIA" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://borhenryk.github.io/mbstomatologia/dziekujemy.html" />
+          <input type="hidden" name="_autoresponse" value="Dziękujemy za wiadomość — otrzymaliśmy Państwa zgłoszenie i skontaktujemy się w ciągu 1–2 dni roboczych. Zespół MBSTOMATOLOGIA." />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
           <h3 class="h3">Napisz do nas</h3>
           <div class="field">
             <label for="name">Imię i nazwisko</label>
-            <input id="name" type="text" required autocomplete="name" />
+            <input id="name" name="Imię i nazwisko" type="text" required autocomplete="name" />
           </div>
           <div class="field">
             <label for="phone">Telefon</label>
-            <input id="phone" type="tel" required autocomplete="tel" />
+            <input id="phone" name="Telefon" type="tel" required autocomplete="tel" />
           </div>
           <div class="field">
             <label for="email">E-mail</label>
-            <input id="email" type="email" autocomplete="email" />
+            <input id="email" name="E-mail" type="email" autocomplete="email" />
           </div>
           <div class="field">
             <label for="message">Wiadomość</label>
-            <textarea id="message" rows="4" required></textarea>
+            <textarea id="message" name="Wiadomość" rows="4" required></textarea>
           </div>
           <label class="check">
-            <input type="checkbox" required />
+            <input type="checkbox" name="Zgoda RODO" value="Wyrażona" required />
             <span>
               Wyrażam zgodę na przetwarzanie moich danych w celu kontaktu.
             </span>
