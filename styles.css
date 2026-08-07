@@ -1424,7 +1424,7 @@ h2 {
 
 .process__viewer {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   gap: clamp(28px, 4vw, 56px);
   align-items: stretch;
   position: relative;
@@ -1642,6 +1642,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
 }
 
 .process__stages {
@@ -1802,41 +1803,100 @@ h2 {
 /* Mobile */
 @media (max-width: 900px) {
   .process__viewer {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .process__viewport {
-    aspect-ratio: 4 / 5;
-    max-height: 60vh;
+    aspect-ratio: 1 / 1;
+    max-height: min(60vh, 460px);
   }
+  .tooth {
+    width: 80%;
+    height: 80%;
+  }
+
+  /* Compact HUD on mobile */
+  .process__hud-top,
+  .process__hud-bottom {
+    left: 32px;
+    right: 32px;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+  }
+  .process__hud-code,
+  .process__hud-axis {
+    display: none;
+  }
+  .process__hud-status {
+    margin-left: auto;
+  }
+
   .process__stages {
     flex-direction: row;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .process__stages::-webkit-scrollbar {
+    display: none;
+  }
+
   .process__stage {
     grid-template-columns: 1fr;
     gap: 4px;
-    min-width: 140px;
+    flex: 0 0 auto;
+    min-width: 120px;
     scroll-snap-align: start;
     padding: 12px 14px;
   }
   .process__stage.is-active::before {
-    left: 10%;
-    right: 10%;
+    left: 12%;
+    right: 12%;
     top: auto;
-    bottom: 0;
+    bottom: 2px;
     width: auto;
     height: 2px;
   }
   .process__stage-label {
     font-size: 0.82rem;
+    white-space: normal;
+    line-height: 1.25;
   }
   .process__stage-num {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .process__descriptions {
+    min-height: 260px;
+    padding: 24px 22px;
+  }
+  .process__desc {
+    inset: 24px 22px;
+  }
+  .process__desc .h3 {
+    font-size: 1.35rem;
+  }
+  .process__desc p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 420px) {
+  .process__hud-top,
+  .process__hud-bottom {
+    left: 26px;
+    right: 26px;
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+  }
+  .process__hud-corner {
+    width: 16px;
+    height: 16px;
   }
   .process__descriptions {
-    min-height: 200px;
+    min-height: 280px;
   }
 }
 
