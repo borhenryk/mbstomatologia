@@ -896,42 +896,16 @@ h2 {
 }
 
 .member__portrait--1 {
-  background-image: none;
-  background:
-    radial-gradient(120% 90% at 30% 20%, #f6efe1 0%, #ece2ce 55%, #dccdb0 100%);
-  filter: none;
-  display: grid;
-  place-items: center;
-}
-.member__portrait--1::before {
-  content: "MB";
-  font-family: var(--serif);
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(4.5rem, 9vw, 6.5rem);
-  color: var(--gold);
-  letter-spacing: 0.02em;
-  line-height: 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.member__portrait--1::after {
-  content: "Zdjęcie wkrótce";
-  position: absolute;
-  bottom: 22px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
+  background-image: url("images/monika-borzymowska.jpg");
+  background-position: center 18%;
+  filter: grayscale(8%);
 }
 .member__portrait--2 {
   background-image: url("https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80");
 }
 .member__portrait--3 {
-  background-image: url("https://images.unsplash.com/photo-1580281657527-47f249e8f4df?auto=format&fit=crop&w=900&q=80");
+  background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80");
+  background-position: center 30%;
 }
 .member__portrait--4 {
   background-image: url("images/andrij-klovanets.jpg");
