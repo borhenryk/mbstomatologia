@@ -76,4 +76,129 @@
   document.querySelectorAll(".team__grid .member").forEach((el, i) => {
     el.style.transitionDelay = `${i * 100}ms`;
   });
+
+  // ============================================================
+  // PROCESS · 3D TREATMENT PLAN
+  // ============================================================
+  const viewer = document.querySelector(".process__viewer");
+  if (viewer) {
+    const stageBtns = viewer.querySelectorAll(".process__stage");
+    const descs = viewer.querySelectorAll(".process__desc");
+    const total = stageBtns.length;
+    const progressFill = viewer.querySelector(".process__progress-fill");
+    const prevBtn = viewer.querySelector('[data-ctrl="prev"]');
+    const nextBtn = viewer.querySelector('[data-ctrl="next"]');
+    const hudStatus = viewer.querySelector("[data-hud-status]");
+    const scene = viewer.querySelector(".process__scene");
+    const viewport = viewer.querySelector(".process__viewport");
+
+    const statusPerStage = [
+      "DIAGNOSTIC MODE",
+      "PLANNING MODE",
+      "PREP MODE",
+      "TEMP CROWN",
+      "FINAL CROWN",
+    ];
+
+    let current = 0;
+    let autoTimer = null;
+    let userInteracted = false;
+
+    const setStage = (idx) => {
+      current = ((idx % total) + total) % total;
+      viewer.setAttribute("data-current", String(current));
+
+      stageBtns.forEach((btn, i) => {
+        const active = i === current;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-selected", String(active));
+      });
+
+      descs.forEach((d, i) => d.classList.toggle("is-active", i === current));
+
+      if (progressFill) {
+        progressFill.style.width = `${((current + 1) / total) * 100}%`;
+      }
+      if (hudStatus) hudStatus.textContent = statusPerStage[current];
+    };
+
+    stageBtns.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        userInteracted = true;
+        stopAuto();
+        setStage(Number(btn.dataset.stage));
+      })
+    );
+
+    if (prevBtn)
+      prevBtn.addEventListener("click", () => {
+        userInteracted = true;
+        stopAuto();
+        setStage(current - 1);
+      });
+    if (nextBtn)
+      nextBtn.addEventListener("click", () => {
+        userInteracted = true;
+        stopAuto();
+        setStage(current + 1);
+      });
+
+    document.addEventListener("keydown", (e) => {
+      if (!isVisible(viewer)) return;
+      if (e.key === "ArrowRight") {
+        userInteracted = true;
+        stopAuto();
+        setStage(current + 1);
+      } else if (e.key === "ArrowLeft") {
+        userInteracted = true;
+        stopAuto();
+        setStage(current - 1);
+      }
+    });
+
+    // Mouse parallax tilt on the viewport (subtle 3D feel)
+    if (viewport && scene && matchMedia("(pointer: fine)").matches) {
+      viewport.addEventListener("mousemove", (e) => {
+        const rect = viewport.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        scene.style.transform = `perspective(1400px) rotateX(${(y * -8).toFixed(
+          2
+        )}deg) rotateY(${(x * 10).toFixed(2)}deg)`;
+      });
+      viewport.addEventListener("mouseleave", () => {
+        scene.style.transform = "perspective(1400px) rotateX(0deg) rotateY(0deg)";
+      });
+    }
+
+    // Auto-advance when section becomes visible & user hasn't taken over
+    const startAuto = () => {
+      if (autoTimer || userInteracted) return;
+      autoTimer = setInterval(() => setStage(current + 1), 4500);
+    };
+    const stopAuto = () => {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    };
+
+    const visIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) startAuto();
+          else stopAuto();
+        });
+      },
+      { threshold: 0.35 }
+    );
+    visIO.observe(viewer);
+
+    setStage(0);
+  }
+
+  function isVisible(el) {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.9 && r.bottom > 0;
+  }
 })();

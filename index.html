@@ -32,6 +32,7 @@
         <nav class="nav__links" aria-label="Menu główne">
           <a href="#o-nas">O nas</a>
           <a href="#oferta">Oferta</a>
+          <a href="#proces">Plan leczenia</a>
           <a href="#zespol">Zespół</a>
           <a href="#cennik">Cennik</a>
           <a href="#warto-wiedziec">Warto wiedzieć</a>
@@ -299,6 +300,535 @@
               pełnoceramiczne, rehabilitacja stawów skroniowo-żuchwowych.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS · 3D TREATMENT PLAN ============ -->
+    <section class="section process" id="proces">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="eyebrow">Plan leczenia 3D</span>
+          <h2 class="h2 h2--center">
+            Zobacz swoje leczenie <span class="italic">krok po kroku</span>
+          </h2>
+          <p class="lead lead--center">
+            Precyzja jak w oprogramowaniu CAD/CAM. Przechodzimy z Tobą przez
+            każdy etap — od diagnostyki tomograficznej, przez plan i
+            szlifowanie, aż po ostateczne korony pełnoceramiczne.
+          </p>
+        </header>
+
+        <div class="process__viewer" data-current="0">
+          <!-- Left column: viewport + HUD -->
+          <div class="process__viewport" aria-live="polite">
+            <div class="process__hud">
+              <span class="process__hud-corner tl"></span>
+              <span class="process__hud-corner tr"></span>
+              <span class="process__hud-corner bl"></span>
+              <span class="process__hud-corner br"></span>
+              <div class="process__hud-top">
+                <span class="process__hud-tag">CAD/CAM · ANALYSIS</span>
+                <span class="process__hud-code">SCAN · MB-<span id="scan-id">2607</span></span>
+              </div>
+              <div class="process__hud-bottom">
+                <span class="process__hud-axis">X 0.0</span>
+                <span class="process__hud-axis">Y 0.0</span>
+                <span class="process__hud-axis">Z 0.0</span>
+                <span class="process__hud-status" data-hud-status>DIAGNOSTIC MODE</span>
+              </div>
+            </div>
+
+            <div class="process__scene">
+              <svg
+                class="tooth"
+                viewBox="0 0 480 560"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Interaktywna wizualizacja etapów leczenia"
+              >
+                <defs>
+                  <linearGradient id="crownGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#f6f0e4" />
+                    <stop offset="1" stop-color="#c9bda0" />
+                  </linearGradient>
+                  <linearGradient id="ceramicGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#ffffff" />
+                    <stop offset="0.55" stop-color="#f2ede1" />
+                    <stop offset="1" stop-color="#c8bda1" />
+                  </linearGradient>
+                  <linearGradient id="tempGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#efe6cf" stop-opacity="0.85" />
+                    <stop offset="1" stop-color="#c4b58f" stop-opacity="0.65" />
+                  </linearGradient>
+                  <radialGradient id="highlightGrad" cx="0.35" cy="0.25" r="0.6">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.65" />
+                    <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+                  </radialGradient>
+                  <marker
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="9"
+                    refY="5"
+                    markerWidth="6"
+                    markerHeight="6"
+                    orient="auto"
+                  >
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a961" />
+                  </marker>
+                </defs>
+
+                <!-- Reference grid -->
+                <g class="grid" stroke="#c9a961" stroke-width="0.4" opacity="0.09">
+                  <line x1="0" y1="140" x2="480" y2="140" />
+                  <line x1="0" y1="280" x2="480" y2="280" />
+                  <line x1="0" y1="420" x2="480" y2="420" />
+                  <line x1="120" y1="0" x2="120" y2="560" />
+                  <line x1="240" y1="0" x2="240" y2="560" />
+                  <line x1="360" y1="0" x2="360" y2="560" />
+                </g>
+
+                <!-- Gum line reference -->
+                <line
+                  x1="30"
+                  y1="280"
+                  x2="450"
+                  y2="280"
+                  stroke="#c9a961"
+                  stroke-width="1"
+                  stroke-dasharray="4 5"
+                  opacity="0.55"
+                />
+                <text
+                  x="450"
+                  y="272"
+                  fill="#c9a961"
+                  font-size="10"
+                  text-anchor="end"
+                  font-family="Inter, sans-serif"
+                  letter-spacing="2"
+                >GUM LINE</text>
+
+                <!-- ROOT (always visible) -->
+                <g class="tooth-root">
+                  <path
+                    d="M 155 280
+                       C 165 320 165 400 158 470
+                       Q 165 495 200 500
+                       Q 240 505 280 500
+                       Q 315 495 322 470
+                       C 315 400 315 320 325 280 Z"
+                    fill="url(#crownGrad)"
+                    stroke="#8f8267"
+                    stroke-width="1"
+                  />
+                </g>
+
+                <!-- STAGE: full crown (visible 0, 1) -->
+                <g class="stage-crown">
+                  <path
+                    d="M 155 280
+                       L 148 258
+                       C 132 200 138 130 148 88
+                       Q 165 55 200 55
+                       Q 240 45 280 55
+                       Q 315 55 332 88
+                       C 342 130 348 200 332 258
+                       L 325 280 Z"
+                    fill="url(#crownGrad)"
+                    stroke="#8f8267"
+                    stroke-width="1"
+                  />
+                  <path
+                    d="M 170 82 Q 200 68 230 82 M 250 82 Q 280 68 310 82"
+                    fill="none"
+                    stroke="#8f8267"
+                    stroke-width="1"
+                    opacity="0.55"
+                  />
+                  <ellipse cx="180" cy="150" rx="10" ry="45" fill="url(#highlightGrad)" />
+                </g>
+
+                <!-- STAGE: prepared stump (visible 2, 3, 4) -->
+                <g class="stage-stump">
+                  <path
+                    d="M 175 280
+                       L 170 245
+                       L 185 178
+                       Q 210 168 240 168
+                       Q 270 168 295 178
+                       L 310 245
+                       L 305 280 Z"
+                    fill="url(#crownGrad)"
+                    stroke="#8f8267"
+                    stroke-width="1"
+                  />
+                  <path
+                    d="M 175 245 L 305 245"
+                    stroke="#8f8267"
+                    stroke-width="0.8"
+                    opacity="0.5"
+                    stroke-dasharray="2 3"
+                  />
+                </g>
+
+                <!-- STAGE: temp crown (visible 3) -->
+                <g class="stage-temp">
+                  <path
+                    d="M 170 245
+                       L 165 180
+                       Q 165 100 200 90
+                       Q 240 78 280 90
+                       Q 315 100 315 180
+                       L 310 245 Z"
+                    fill="url(#tempGrad)"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    stroke-dasharray="3 3"
+                  />
+                </g>
+
+                <!-- STAGE: final ceramic crown (visible 4) -->
+                <g class="stage-final">
+                  <path
+                    d="M 170 245
+                       L 158 170
+                       Q 152 95 195 72
+                       Q 240 55 285 72
+                       Q 328 95 322 170
+                       L 310 245 Z"
+                    fill="url(#ceramicGrad)"
+                    stroke="#a6935e"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M 175 88 Q 200 72 225 88 M 255 88 Q 280 72 305 88"
+                    fill="none"
+                    stroke="#8f8267"
+                    stroke-width="1"
+                    opacity="0.55"
+                  />
+                  <ellipse cx="200" cy="130" rx="14" ry="55" fill="url(#highlightGrad)" />
+                </g>
+
+                <!-- HUD: Stage 0 · Diagnostyka -->
+                <g class="hud-diagnostic">
+                  <!-- Root canals -->
+                  <line
+                    x1="185"
+                    y1="288"
+                    x2="180"
+                    y2="475"
+                    stroke="#5cc9d1"
+                    stroke-width="1"
+                    stroke-dasharray="2 3"
+                    opacity="0.85"
+                  />
+                  <line
+                    x1="295"
+                    y1="288"
+                    x2="300"
+                    y2="475"
+                    stroke="#5cc9d1"
+                    stroke-width="1"
+                    stroke-dasharray="2 3"
+                    opacity="0.85"
+                  />
+                  <!-- Depth ruler -->
+                  <line x1="385" y1="60" x2="385" y2="500" stroke="#5cc9d1" stroke-width="1" />
+                  <line x1="380" y1="60" x2="390" y2="60" stroke="#5cc9d1" stroke-width="1" />
+                  <line x1="380" y1="500" x2="390" y2="500" stroke="#5cc9d1" stroke-width="1" />
+                  <text
+                    x="398"
+                    y="285"
+                    fill="#5cc9d1"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >22.4 mm</text>
+                  <!-- Bone density -->
+                  <g transform="translate(30 400)">
+                    <text fill="#5cc9d1" font-size="9" font-family="Inter, sans-serif" letter-spacing="2" y="-8">D2 · BONE</text>
+                    <rect width="70" height="6" fill="none" stroke="#5cc9d1" stroke-width="0.6" />
+                    <rect width="49" height="6" fill="#5cc9d1" opacity="0.45" />
+                  </g>
+                  <!-- Tooth number -->
+                  <text
+                    x="30"
+                    y="60"
+                    fill="#5cc9d1"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="2"
+                  >TOOTH · 26</text>
+                </g>
+
+                <!-- HUD: Stage 1 · Plan leczenia -->
+                <g class="hud-plan">
+                  <line
+                    x1="120"
+                    y1="115"
+                    x2="360"
+                    y2="115"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    stroke-dasharray="3 3"
+                  />
+                  <text
+                    x="365"
+                    y="119"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >-1.5 mm</text>
+                  <line
+                    x1="120"
+                    y1="255"
+                    x2="360"
+                    y2="255"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    stroke-dasharray="3 3"
+                  />
+                  <text
+                    x="365"
+                    y="259"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >MARGIN</text>
+
+                  <g stroke="#c9a961" stroke-width="1" fill="none">
+                    <circle cx="240" cy="175" r="36" />
+                    <line x1="200" y1="175" x2="220" y2="175" />
+                    <line x1="260" y1="175" x2="280" y2="175" />
+                    <line x1="240" y1="135" x2="240" y2="155" />
+                    <line x1="240" y1="195" x2="240" y2="215" />
+                    <circle cx="240" cy="175" r="2" fill="#c9a961" />
+                  </g>
+
+                  <text
+                    x="30"
+                    y="60"
+                    fill="#c9a961"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="2"
+                  >PLAN · v.02</text>
+                </g>
+
+                <!-- HUD: Stage 2 · Szlifowanie -->
+                <g class="hud-prep">
+                  <!-- Chamfer callout -->
+                  <path
+                    d="M 90 245 L 165 245"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    marker-end="url(#arrow)"
+                  />
+                  <text
+                    x="30"
+                    y="240"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >CHAMFER · 0.8mm</text>
+
+                  <!-- Occlusal reduction -->
+                  <line x1="90" y1="90" x2="90" y2="170" stroke="#c9a961" stroke-width="1" />
+                  <line x1="85" y1="90" x2="95" y2="90" stroke="#c9a961" stroke-width="1" />
+                  <line x1="85" y1="170" x2="95" y2="170" stroke="#c9a961" stroke-width="1" />
+                  <text
+                    x="30"
+                    y="135"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                    text-anchor="middle"
+                    transform="rotate(-90 30 135)"
+                  >-2.0 mm</text>
+                </g>
+
+                <!-- HUD: Stage 3 · Korony tymczasowe -->
+                <g class="hud-temp">
+                  <path
+                    d="M 340 140 L 315 155"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    marker-end="url(#arrow)"
+                  />
+                  <text
+                    x="345"
+                    y="135"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >TEMP · PMMA</text>
+                  <text
+                    x="30"
+                    y="60"
+                    fill="#c9a961"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="2"
+                  >7-14 DAYS</text>
+                </g>
+
+                <!-- HUD: Stage 4 · Korony ostateczne -->
+                <g class="hud-final">
+                  <path
+                    d="M 340 140 L 315 155"
+                    stroke="#c9a961"
+                    stroke-width="1"
+                    marker-end="url(#arrow)"
+                  />
+                  <text
+                    x="345"
+                    y="135"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                  >FINAL · E.MAX</text>
+                  <text
+                    x="30"
+                    y="60"
+                    fill="#c9a961"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="2"
+                  >SHADE · A2</text>
+                  <text
+                    x="30"
+                    y="80"
+                    fill="#c9a961"
+                    font-size="10"
+                    font-family="Inter, sans-serif"
+                    letter-spacing="1.5"
+                    opacity="0.7"
+                  >TRANSLUCENCY · HT</text>
+                </g>
+
+                <!-- Scan sweep line (looping) -->
+                <line
+                  class="scan-sweep"
+                  x1="0"
+                  y1="0"
+                  x2="480"
+                  y2="0"
+                  stroke="#c9a961"
+                  stroke-width="0.8"
+                  opacity="0.35"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Right column: info panel -->
+          <aside class="process__info">
+            <div class="process__stages" role="tablist" aria-label="Etapy leczenia">
+              <button class="process__stage is-active" data-stage="0" role="tab" aria-selected="true">
+                <span class="process__stage-num">01</span>
+                <span class="process__stage-label">Diagnostyka</span>
+              </button>
+              <button class="process__stage" data-stage="1" role="tab" aria-selected="false">
+                <span class="process__stage-num">02</span>
+                <span class="process__stage-label">Plan leczenia</span>
+              </button>
+              <button class="process__stage" data-stage="2" role="tab" aria-selected="false">
+                <span class="process__stage-num">03</span>
+                <span class="process__stage-label">Szlifowanie</span>
+              </button>
+              <button class="process__stage" data-stage="3" role="tab" aria-selected="false">
+                <span class="process__stage-num">04</span>
+                <span class="process__stage-label">Korona tymczasowa</span>
+              </button>
+              <button class="process__stage" data-stage="4" role="tab" aria-selected="false">
+                <span class="process__stage-num">05</span>
+                <span class="process__stage-label">Korona ostateczna</span>
+              </button>
+            </div>
+
+            <div class="process__descriptions">
+              <div class="process__desc is-active" data-desc="0">
+                <span class="process__desc-tag">Etap 01</span>
+                <h3 class="h3">Diagnostyka 3D</h3>
+                <p>
+                  Pantomogram i tomografia komputerowa 3D pozwalają nam ocenić
+                  stan zębów, korzeni oraz kości otaczającej. Skanujemy
+                  pacjenta, analizujemy anatomię i planujemy każdy krok
+                  leczenia jeszcze zanim rozpocznie się jakakolwiek procedura.
+                </p>
+              </div>
+
+              <div class="process__desc" data-desc="1">
+                <span class="process__desc-tag">Etap 02</span>
+                <h3 class="h3">Cyfrowy plan leczenia</h3>
+                <p>
+                  Na podstawie diagnostyki tworzymy indywidualny plan —
+                  określamy zakres redukcji zęba, dobieramy materiał i kolor
+                  korony, a każdy pomiar weryfikujemy z pacjentem. Plan
+                  cyfrowy jest przewidywalny i eliminuje niespodzianki.
+                </p>
+              </div>
+
+              <div class="process__desc" data-desc="2">
+                <span class="process__desc-tag">Etap 03</span>
+                <h3 class="h3">Precyzyjne szlifowanie</h3>
+                <p>
+                  Ząb jest opracowywany zgodnie z planem — z zachowaniem
+                  grubości marginesu (0.8 mm) i redukcji zwarciowej
+                  (1.5–2.0 mm). Precyzja preparacji to warunek trwałego,
+                  szczelnego uzupełnienia protetycznego.
+                </p>
+              </div>
+
+              <div class="process__desc" data-desc="3">
+                <span class="process__desc-tag">Etap 04</span>
+                <h3 class="h3">Korona tymczasowa</h3>
+                <p>
+                  Na czas wykonania korony ostatecznej zabezpieczamy ząb
+                  koroną tymczasową z PMMA — chroni ona pole zabiegowe,
+                  zapewnia estetykę i pozwala pacjentowi normalnie
+                  funkcjonować.
+                </p>
+              </div>
+
+              <div class="process__desc" data-desc="4">
+                <span class="process__desc-tag">Etap 05</span>
+                <h3 class="h3">Korona ostateczna</h3>
+                <p>
+                  Finalna korona pełnoceramiczna (e.max lub cyrkon) — wykonana
+                  z najwyższej jakości materiałów, dopasowana kolorem i
+                  kształtem do naturalnych zębów. Rezultat jest przewidywalny
+                  i długoczasowy.
+                </p>
+              </div>
+            </div>
+
+            <div class="process__controls">
+              <button class="process__ctrl" data-ctrl="prev" aria-label="Poprzedni etap">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+
+              <div class="process__progress" aria-hidden="true">
+                <span class="process__progress-fill"></span>
+              </div>
+
+              <button class="process__ctrl" data-ctrl="next" aria-label="Następny etap">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
