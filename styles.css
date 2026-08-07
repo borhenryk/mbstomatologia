@@ -328,8 +328,9 @@ h2 {
 
 .nav__links {
   display: flex;
-  gap: 30px;
+  gap: 26px;
   color: #fff;
+  white-space: nowrap;
   transition: color 0.35s var(--ease);
 }
 
@@ -362,6 +363,21 @@ h2 {
 
 .nav__links a:hover::after {
   width: 100%;
+}
+
+.nav__links a.nav__link--doc {
+  padding-left: 12px;
+  margin-left: 4px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  opacity: 0.75;
+}
+.nav.is-scrolled .nav__links a.nav__link--doc {
+  border-left-color: rgba(15, 31, 45, 0.15);
+}
+.nav__links a.nav__link--doc:hover,
+.nav__links a[aria-current="page"] {
+  opacity: 1;
+  color: var(--gold);
 }
 
 .nav__cta {
@@ -438,12 +454,15 @@ h2 {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .nav__cta span:not(.nav__cta-dot) {
     display: none;
   }
   .nav__cta {
     padding: 10px 12px;
+  }
+  .nav__links {
+    gap: 20px;
   }
 }
 
@@ -471,6 +490,19 @@ h2 {
   .nav__links a {
     font-family: var(--serif);
     font-size: 1.5rem;
+  }
+  .nav__links a.nav__link--doc {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 1rem;
+    font-family: var(--sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-top: 12px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(15, 31, 45, 0.1);
   }
   .nav__toggle {
     display: inline-flex;
