@@ -666,29 +666,20 @@ h2 {
   overflow: hidden;
 }
 
-.about__img--1 {
-  inset: 0 30% 20% 0;
+.about__img--single {
+  inset: 0;
   background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80");
-  z-index: 2;
   box-shadow: var(--shadow);
 }
-
-.about__img--2 {
-  inset: 30% 0 0 30%;
-  background-image: url("images/gabinet-front.jpg");
-  z-index: 1;
-  box-shadow: var(--shadow);
-}
-
-.about__accent {
+.about__img--single::after {
+  content: "";
   position: absolute;
-  right: 15%;
-  top: 8%;
-  width: 90px;
-  height: 90px;
+  inset: auto -12px -12px auto;
+  width: 80px;
+  height: 80px;
   border: 1px solid var(--gold);
   border-radius: 50%;
-  z-index: 0;
+  pointer-events: none;
 }
 
 .about__content p {
@@ -1826,6 +1817,14 @@ h2 {
 
 /* Mobile */
 @media (max-width: 900px) {
+  /* Hide the big decorative arcs on mobile — on narrow viewports the
+     bottom-right arc creates visual weight that makes the section look
+     off-center even though the layout is mathematically centered. */
+  .process::before,
+  .process::after {
+    display: none;
+  }
+
   .process__viewer {
     grid-template-columns: minmax(0, 1fr);
   }
