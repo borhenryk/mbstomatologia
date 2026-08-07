@@ -538,6 +538,8 @@ h2 {
   letter-spacing: -0.01em;
   margin: 0 0 24px;
   max-width: 14ch;
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(15, 31, 45, 0.35);
 }
 
 .hero__title .italic {
@@ -655,14 +657,14 @@ h2 {
 
 .about__img--1 {
   inset: 0 30% 20% 0;
-  background-image: url("images/gabinet-front.jpg");
+  background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80");
   z-index: 2;
   box-shadow: var(--shadow);
 }
 
 .about__img--2 {
   inset: 30% 0 0 30%;
-  background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80");
+  background-image: url("images/gabinet-front.jpg");
   z-index: 1;
   box-shadow: var(--shadow);
 }
@@ -892,23 +894,36 @@ h2 {
 }
 
 .member__portrait--1 {
-  background-image: url("images/monika-borzymowska.jpg");
-  background-color: #ecebe7;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
+  background-image: none;
+  background:
+    radial-gradient(120% 90% at 30% 20%, #f6efe1 0%, #ece2ce 55%, #dccdb0 100%);
   filter: none;
+  display: grid;
+  place-items: center;
+}
+.member__portrait--1::before {
+  content: "MB";
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(4.5rem, 9vw, 6.5rem);
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .member__portrait--1::after {
-  content: "";
+  content: "Zdjęcie wkrótce";
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(236, 235, 231, 0) 60%,
-    rgba(236, 235, 231, 0.35) 100%
-  );
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 .member__portrait--2 {
   background-image: url("https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80");
