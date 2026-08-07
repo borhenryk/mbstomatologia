@@ -4,8 +4,9 @@
   const links = document.querySelector(".nav__links");
 
   // Solidify nav on scroll
+  const alwaysScrolled = document.body.classList.contains("page-doc");
   const onScroll = () => {
-    if (window.scrollY > 20) nav.classList.add("is-scrolled");
+    if (alwaysScrolled || window.scrollY > 20) nav.classList.add("is-scrolled");
     else nav.classList.remove("is-scrolled");
   };
   onScroll();
