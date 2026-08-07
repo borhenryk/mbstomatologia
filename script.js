@@ -12,20 +12,32 @@
   window.addEventListener("scroll", onScroll, { passive: true });
 
   // Mobile menu
+  const closeMenu = () => {
+    toggle.setAttribute("aria-expanded", "false");
+    links.classList.remove("is-open");
+    nav.classList.remove("is-menu-open");
+    document.body.style.overflow = "";
+  };
+  const openMenu = () => {
+    toggle.setAttribute("aria-expanded", "true");
+    links.classList.add("is-open");
+    nav.classList.add("is-menu-open");
+    document.body.style.overflow = "hidden";
+  };
+
   toggle.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!open));
-    links.classList.toggle("is-open", !open);
-    document.body.style.overflow = !open ? "hidden" : "";
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) closeMenu();
+    else openMenu();
   });
 
   links.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      toggle.setAttribute("aria-expanded", "false");
-      links.classList.remove("is-open");
-      document.body.style.overflow = "";
-    })
+    a.addEventListener("click", closeMenu)
   );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 
   // Pricing tabs
   const tabs = document.querySelectorAll(".pricing__tabs .tab");

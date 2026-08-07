@@ -259,6 +259,17 @@ h2 {
   border-bottom-color: var(--line);
 }
 
+/* When the mobile menu is open, force the nav bar fully opaque and
+   drop backdrop-filter — otherwise backdrop-filter creates a new
+   containing block for `.nav__links` (position: fixed), which then
+   positions itself relative to the 79px-tall nav instead of the viewport. */
+.nav.is-menu-open {
+  background: var(--bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
 .nav__inner {
   display: flex;
   align-items: center;
@@ -1434,6 +1445,9 @@ h2 {
 .process__viewport {
   position: relative;
   aspect-ratio: 1 / 1;
+  /* Explicit fallback size so the viewport always renders even in
+     browsers where aspect-ratio + max-height doesn't produce a height */
+  min-height: 320px;
   background: radial-gradient(
       120% 90% at 30% 20%,
       #1c3450 0%,
@@ -1444,6 +1458,16 @@ h2 {
   border-radius: 6px;
   overflow: hidden;
   perspective: 1400px;
+}
+
+/* If aspect-ratio isn't supported at all, use a padding-based square
+   as an absolute fallback. Modern browsers ignore this because aspect-ratio wins. */
+@supports not (aspect-ratio: 1 / 1) {
+  .process__viewport::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
 }
 
 .process__hud {
@@ -1807,11 +1831,19 @@ h2 {
   }
   .process__viewport {
     aspect-ratio: 1 / 1;
-    max-height: min(60vh, 460px);
+    max-height: 460px;
+    min-height: 320px;
   }
   .tooth {
     width: 80%;
     height: 80%;
+  }
+  /* Disable 3D layer on mobile — no mouse-parallax and avoids
+     iOS Safari quirks with preserve-3d + SVG. */
+  .process__scene {
+    transform: none !important;
+    transform-style: flat;
+    will-change: auto;
   }
 
   /* Compact HUD on mobile */
