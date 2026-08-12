@@ -1454,17 +1454,18 @@ h2 {
 }
 
 .process__viewer {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 56px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(26px, 3.5vw, 44px);
   position: relative;
 }
 
-/* --- Viewport (left) --- */
+/* --- Viewport (tooth, on top) --- */
 .process__viewport {
-  position: sticky;
-  top: 100px;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
   aspect-ratio: 1 / 1;
   /* Explicit fallback size so the viewport always renders even in
      browsers where aspect-ratio + max-height doesn't produce a height */
@@ -1682,17 +1683,21 @@ h2 {
   }
 }
 
-/* --- Info panel (right) --- */
+/* --- Info panel (below the tooth) --- */
 .process__info {
   display: flex;
   flex-direction: column;
   gap: 24px;
   min-width: 0;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
 }
 
 .process__stages {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 2px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1701,14 +1706,15 @@ h2 {
 }
 
 .process__stage {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px;
+  flex: 1 1 130px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 14px 18px;
+  gap: 5px;
+  padding: 12px 10px;
   border-radius: 3px;
   color: rgba(255, 255, 255, 0.7);
-  text-align: left;
+  text-align: center;
   transition: all 0.25s var(--ease);
   position: relative;
 }
@@ -1725,20 +1731,20 @@ h2 {
 .process__stage.is-active::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 10%;
-  bottom: 10%;
-  width: 2px;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 2px;
   background: var(--gold);
   border-radius: 2px;
 }
 
 .process__stage-num {
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--gold-soft);
-  min-width: 34px;
   letter-spacing: 0.02em;
+  line-height: 1;
 }
 .process__stage.is-active .process__stage-num {
   color: var(--gold);
@@ -1746,9 +1752,10 @@ h2 {
 
 .process__stage-label {
   font-family: var(--sans);
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.01em;
+  line-height: 1.25;
 }
 
 .process__descriptions {
@@ -1808,9 +1815,21 @@ h2 {
   margin-bottom: 18px !important;
 }
 
+.process__video-head {
+  margin: clamp(48px, 7vw, 90px) auto 22px;
+  text-align: center;
+}
+.process__video-head .eyebrow {
+  color: var(--gold-soft);
+}
+.process__video-head .h2 {
+  color: #fff;
+  margin-top: 6px;
+}
+
 .process__video {
-  margin: clamp(36px, 5vw, 64px) auto 0;
-  max-width: 900px;
+  margin: 0 auto;
+  max-width: 600px;
   text-align: center;
 }
 .process__video-frame {
