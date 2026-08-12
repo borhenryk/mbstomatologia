@@ -687,23 +687,30 @@ h2 {
 
 .about__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .about__img {
-  position: absolute;
+  position: relative;
+  width: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 2px;
   overflow: hidden;
 }
 
-.about__img--single {
-  inset: 0;
-  background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80");
+.about__img--real {
+  aspect-ratio: 16 / 9;
+  background-image: url("images/gabinet-mikroskop.jpg");
   box-shadow: var(--shadow);
 }
-.about__img--single::after {
+.about__img--stock {
+  aspect-ratio: 16 / 10;
+  background-image: url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80");
+}
+.about__img--real::after {
   content: "";
   position: absolute;
   inset: auto -12px -12px auto;
@@ -1749,22 +1756,28 @@ h2 {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 4px;
-  padding: 26px 28px;
-  display: grid;
 }
 
+/* Inactive descriptions overlay absolutely (removed from flow); the active
+   one is in normal flow so the container height matches the active stage. */
 .process__desc {
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
+  padding: 26px 28px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   pointer-events: none;
   min-width: 0;
+  overflow: hidden;
 }
 .process__desc.is-active {
+  position: relative;
+  inset: auto;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  overflow: visible;
 }
 
 .process__desc-tag {
@@ -2040,6 +2053,8 @@ h2 {
 
   .process__descriptions {
     min-height: 260px;
+  }
+  .process__desc {
     padding: 24px 22px;
   }
   .process__desc .h3 {
