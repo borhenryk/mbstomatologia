@@ -1807,6 +1807,34 @@ h2 {
   margin-bottom: 18px !important;
 }
 
+.process__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+.process__gallery-item {
+  margin: 0;
+}
+.process__gallery-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.process__gallery-item figcaption {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+}
+
 .process__tiers {
   display: flex;
   flex-direction: column;
