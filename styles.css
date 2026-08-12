@@ -529,8 +529,7 @@ h2 {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: url("https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&fit=crop&w=2400&q=80")
-    center / cover no-repeat;
+  background: url("images/gabinet-mikroskop.jpg") center / cover no-repeat;
   transform: scale(1.05);
   animation: heroZoom 22s ease-out forwards;
 }
@@ -545,13 +544,15 @@ h2 {
   position: absolute;
   inset: 0;
   z-index: -1;
+  /* Stronger scrim so white text stays readable over the bright clinic photo */
   background: linear-gradient(
       120deg,
-      rgba(15, 31, 45, 0.85) 0%,
-      rgba(15, 31, 45, 0.55) 55%,
-      rgba(15, 31, 45, 0.35) 100%
+      rgba(11, 24, 36, 0.94) 0%,
+      rgba(11, 24, 36, 0.8) 45%,
+      rgba(11, 24, 36, 0.6) 100%
     ),
-    linear-gradient(to top, rgba(15, 31, 45, 0.6) 0%, transparent 40%);
+    linear-gradient(to top, rgba(11, 24, 36, 0.75) 0%, transparent 45%),
+    linear-gradient(rgba(11, 24, 36, 0.28), rgba(11, 24, 36, 0.28));
 }
 
 .hero__inner {
@@ -1805,6 +1806,45 @@ h2 {
 
 .process__desc-intro {
   margin-bottom: 18px !important;
+}
+
+.process__video {
+  margin: clamp(36px, 5vw, 64px) auto 0;
+  max-width: 900px;
+  text-align: center;
+}
+.process__video-frame {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 97, 0.25);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  background: #081420;
+}
+.process__video-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 848 / 480;
+  object-fit: cover;
+}
+.process__video figcaption {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.process__video-tag {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
 }
 
 .process__gallery {
