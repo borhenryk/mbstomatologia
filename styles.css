@@ -2063,15 +2063,29 @@ h2 {
     display: none;
   }
 
-  .process__viewer {
-    grid-template-columns: minmax(0, 1fr);
-  }
   .process__viewport {
     position: relative;
     top: auto;
     aspect-ratio: 1 / 1;
     max-height: 460px;
     min-height: 320px;
+  }
+
+  /* Single-line, side-scrollable stepper instead of uneven wrapping */
+  .process__stages {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .process__stages::-webkit-scrollbar {
+    display: none;
+  }
+  .process__stage {
+    flex: 0 0 auto;
+    min-width: 104px;
+    scroll-snap-align: center;
   }
   .tooth {
     width: 80%;

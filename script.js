@@ -125,6 +125,11 @@
         const active = i === current;
         btn.classList.toggle("is-active", active);
         btn.setAttribute("aria-selected", String(active));
+        if (active && btn.parentElement && btn.parentElement.scrollWidth > btn.parentElement.clientWidth) {
+          const parent = btn.parentElement;
+          const target = btn.offsetLeft - (parent.clientWidth - btn.clientWidth) / 2;
+          parent.scrollTo({ left: target, behavior: "smooth" });
+        }
       });
 
       descs.forEach((d, i) => d.classList.toggle("is-active", i === current));
