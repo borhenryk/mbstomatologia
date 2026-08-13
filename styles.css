@@ -1080,7 +1080,6 @@ h2 {
   padding: 0;
   margin: 0;
 }
-
 .price-list li {
   display: flex;
   align-items: baseline;
@@ -1088,6 +1087,20 @@ h2 {
   padding: 18px 0;
   border-bottom: 1px dashed var(--line);
   color: var(--ink);
+}
+.price-list li.price-list__head {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 20px 0 6px;
+  border-bottom: 0;
+}
+.price-list li.price-list__head:first-child {
+  padding-top: 4px;
 }
 .price-list li:last-child {
   border-bottom: 0;
@@ -1999,6 +2012,11 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.08);
   aspect-ratio: 16 / 10;
   background: rgba(0, 0, 0, 0.2);
+}
+.process__tier-photo--portrait {
+  aspect-ratio: 3 / 4;
+  width: 36%;
+  max-width: 180px;
 }
 .process__tier-photo img {
   width: 100%;
