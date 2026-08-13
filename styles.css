@@ -1844,6 +1844,16 @@ h2 {
 }
 .process__video-head .eyebrow {
   color: var(--gold-soft);
+  padding-right: 34px;
+}
+.process__video-head .eyebrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
 }
 .process__video-head .h2 {
   color: #fff;
@@ -1898,6 +1908,9 @@ h2 {
 .process__gallery--single {
   grid-template-columns: 1fr;
   max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .process__gallery-item {
   margin: 0;
