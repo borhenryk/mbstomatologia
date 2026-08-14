@@ -288,7 +288,8 @@ h2 {
   transition: color 0.35s var(--ease);
 }
 
-.nav.is-scrolled .brand {
+.nav.is-scrolled .brand,
+.nav.is-menu-open .brand {
   color: var(--ink);
 }
 
@@ -441,7 +442,8 @@ h2 {
   background: #fff;
   transition: all 0.3s var(--ease);
 }
-.nav.is-scrolled .nav__toggle span {
+.nav.is-scrolled .nav__toggle span,
+.nav.is-menu-open .nav__toggle span {
   background: var(--ink);
 }
 .nav__toggle[aria-expanded="true"] span:nth-child(1) {
@@ -1424,8 +1426,8 @@ h2 {
 
 .footer__cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
 }
 
 .footer__cols h4 {
