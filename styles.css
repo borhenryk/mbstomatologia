@@ -837,6 +837,43 @@ h2 {
   margin: 0;
 }
 
+.service__label {
+  font-family: var(--sans);
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold) !important;
+  margin: 0 0 10px !important;
+}
+
+.service__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.service__list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+.service__list li:last-child {
+  margin-bottom: 0;
+}
+.service__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 /* ================================================
    QUOTE / CTA BANNER
    ================================================ */
